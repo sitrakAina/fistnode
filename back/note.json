@@ -1,0 +1,23 @@
+[
+    {
+        "nom": "Bruno",
+        "prenom": "test",
+        "image": "/assets/image/tete.jpeg"
+    },
+    {
+        "nom": "Rakoto",
+        "prenom": "aina",
+        "image": "/assets/image/tete.jpeg"
+    },
+    {
+        "nom": "Bruno",
+        "prenom": "Marcelino",
+        "image": "/assets/image/tete.jpeg"
+    },
+    {
+        "nom": "Fabrice",
+        "prenom": "Bao",
+        "image": "/assets/image/tete.jpeg"
+    }
+]
+
