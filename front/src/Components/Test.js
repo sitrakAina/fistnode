@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-//import { Route} from 'react-router-dom';
+import React, {Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class Test extends Component {
     constructor(props) {
       super(props);
@@ -43,7 +44,7 @@ class Test extends Component {
                  let aff = document.getElementById('affichage')
                 console.log(this.state.items)
                 for(let i = 0; i<this.state.items.length; i++){   
-                  aff.innerHTML +='<img src="this.state.items[i].image"/>' + this.state.items[i].nom +' ' + this.state.items[i].prenom +'<br>'
+                  aff.innerHTML += this.state.items[i].nom +' ' + this.state.items[i].prenom +'<br>'
                  } 
               }} className="btn btn-primary">Lister</button>
              <p id="affichage"></p> 
