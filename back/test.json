@@ -2,21 +2,21 @@
     {
         "nom": "Aina",
         "prenom": "test",
-        "image": "https://avatars2.githubusercontent.com/u/29408683?s=88&v=4"
+        "image": "/assets/image/tete.jpeg"
     },
     {
         "nom": "Rasoa",
         "prenom": "bozy",
-        "image": "https://avatars2.githubusercontent.com/u/29408683?s=88&v=4"
+        "image": "/assets/image/tete.jpeg"
     },
     {
         "nom": "Bruno",
         "prenom": "Kely",
-        "image": "https://avatars2.githubusercontent.com/u/29408683?s=88&v=4"
+        "image": "/assets/image/tete.jpeg"
     },
     {
         "nom": "Black",
         "prenom": "Kely",
-        "image": "https://avatars2.githubusercontent.com/u/29408683?s=88&v=4"
+        "image": "/assets/image/tete.jpeg"
     }
 ]
