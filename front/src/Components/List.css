@@ -1,27 +1,4 @@
-#affiche{
-
-    margin-left: 520px;
-    width: 300px;
-    border-style: solid;
-    border-color: rgb(0, 0, 0);
-}
-
-#reduire{
-    width: 100px;
-    height: 100px;
-    float: left;
-    padding: 5px;
-}
-
-
-#fifi{
-    border-style: solid;
-    border-color: rgb(0, 0, 0);
-    
-}
-
-
-
-#fafa{
-    float: left;
+.content{
+	margin-top: 50px;
+    padding: 20px;
 }
