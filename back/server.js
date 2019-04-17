@@ -1,15 +1,19 @@
 const express = require('express');
-var bodyParser = require('body-parser')
-var cors = require('cors');
-
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const cors = require('cors');
 const app = express();
+const router = require('./route/route');
+
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const router = require('./route/route');
-
+app.use(methodOverride('X-HTTP-Method')) 
+app.use(methodOverride('X-HTTP-Method-Override'))
+app.use(methodOverride('X-Method-Override'))
+app.use(methodOverride('_method'))
 
 app.listen(8080, function () {
   console.log('server demarer')
