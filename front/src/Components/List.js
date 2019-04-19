@@ -6,25 +6,28 @@ import Ajout from './Ajout'
 
 import './List.css';
 class List extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        error: null,
-        isLoaded: false,
-        items: []
-      };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
   
     componentDidMount() {
       fetch("http://localhost:8080/list")
         .then(res => res.json())
         .then(
           (result) => {
-            this.setState({
-              isLoaded: true,
-              items: result
-            });         
-            console.log(result)
+            setTimeout(() => { 
+              this.setState({
+                isLoaded: true,
+                items: result
+              });         
+              console.log(result)
+            },1000)
+            
           },
           (error) => {
             this.setState({
@@ -37,27 +40,23 @@ class List extends Component {
 
   
     render() {
-      const { error, items} = this.state;
+      const { error, isLoaded, items} = this.state;
       if (error) {
         return <div>{console.log(error.message)}</div>;
-      }else {
+      }else if (!isLoaded) {
+        return <div className="spinner-border text-danger" role="status" id="spinner">
+                  <span className="sr-only">Loading...</span>
+                </div>;
+      } else {
         return (
           <div className="container">
             <div className="formule">
               <Ajout/>
             </div> 
               <div>
-                  <button type="button" onClick={()=>{
-                    let aff = document.getElementById('affiche');
-                    aff.style.display = 'block';
-                    /*console.log(this.state.items)
-                    for(let i = 0; i<this.state.items.length; i++){
-                      aff.innerHTML +="<p id='fifi'></p><br/>Nom :"+ this.state.items[i].nom +"<br/>Prenom :" + this.state.items[i].prenom +"<button onClick='{() => {props.editProduct(product)}}'>Edit</button></p></p><br/>" 
-                    
-                    }*/
-                  }} className="btn btn-primary">Lister</button>
+                  
 
-                <div id="affiche" style={{display:'none'}}>
+                <div id="affiche" >
                   <table className="table table-striped table-bordered">
                     <thead className="thead-dark">
                       <tr>
@@ -71,49 +70,51 @@ class List extends Component {
                       { (items.length > 0)? items.map(item =>(
                         <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td>{item.nom}</td>
+                        <td>{item.nom.charAt(0).toUpperCase() + item.nom.substring(1).toLowerCase()}</td>
                         <td>{item.prenom}</td>
                         <td><button onClick = {()=>{
                           confirmAlert({
                             customUI: ({ onClose }) => {
                               return (
-                                <div className='custom-ui'>
-                                  <form method="POST" action="http://localhost:8080/list?_method=PUT" enctype="application/x-www-form-urlencoded">
+                                <div className="border">
+                                  <form method="POST" action="http://localhost:8080/list?_method=PUT" enctype="application/x-www-form-urlencoded" id="edit">
                                     <input type="hidden" name="_method" value="PUT"/>
                                     <input type="text" name="nom" placeholder={item.nom}/><br/><br/>
                                     <input type="text" name="prenom" placeholder={item.prenom}/><br/><br/>
                                     <input type="hidden" name="id" value={item.id}/>
-                                  <button onClick={onClose} class="btn btn-outline-info">Cancel</button>
-                                  <button class="btn btn-outline-success">
-                                    Edit
-                                  </button>
+                                    <button class="btn btn-outline-success" >
+                                      OK
+                                    </button>
+                                    <button onClick={onClose} class="btn btn-outline-info" id="ok">Annuler</button>
                                   </form>
                                 </div>
                               );
                             }
                           });
-                        }} className="btn btn-success">Update</button>
+                        }} className="btn btn-success">Edit</button>
                         <button onClick = {()=>{
                           confirmAlert({
                           customUI: ({ onClose }) => {
                             return (
-                              <div className='custom-ui'>
-                                <form method="POST" action="http://localhost:8080/list?_method=DELETE" enctype="application/x-www-form-urlencoded">
+                              <div class="border">
+                                <form method="POST" action="http://localhost:8080/list?_method=DELETE" enctype="application/x-www-form-urlencoded" id="edit">
                                   <input type="hidden" name="_method" value="DELETE"/>
                                   
                                   <input type="hidden" name="id" value={item.id}/>
-                                  <span>confirmer supression<br/>{item.nom + ' '+item.prenom}</span>
+                                  <span id="text">confirmer supression<br/>{item.nom + ' '+item.prenom}</span>
                                   <br/><br/>
-                                <button onClick={onClose} className="btn btn-outline-info">Cancel</button>
-                                <button className="btn btn-outline-danger">
-                                  Delete
-                                </button>
+                                  <button className="btn btn-outline-danger" >
+                                    OUI
+                                  </button>
+                                  <button onClick={onClose} className="btn btn-outline-info" id="ok">NON</button>
                                 </form>
                               </div>
                             );
                           }
                         });
-                        }} className="btn btn-danger">Delete</button></td>
+                        }} className="btn btn-danger" id="supre">
+                            <span aria-hidden="true">&times;</span>
+                        </button></td>
                         </tr>
                       )):(<tr></tr>)}
                     </tbody>

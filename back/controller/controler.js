@@ -59,7 +59,7 @@ exports.getTest = (req, res) => {
          com.push({id:id, nom:nom, prenom:prenom});
 
     fs.writeFileSync('./model/note.json', JSON.stringify(com));
-    res.send(com);
+    res.redirect('http://localhost:3000/list');
  };
  
  exports.putList = (req, res) => {
@@ -83,7 +83,7 @@ exports.getTest = (req, res) => {
       }
       
       fs.writeFileSync('./model/note.json', JSON.stringify(com));
-      res.send(com);
+      res.redirect('http://localhost:3000/list');
  }; 
  
  exports.deleteList = (req, res) => {
@@ -95,7 +95,7 @@ exports.getTest = (req, res) => {
                com.splice(i,1)
            } 
       }
-      res.send(JSON.stringify(com))
       fs.writeFileSync('./model/note.json', JSON.stringify(com))
+      res.redirect('http://localhost:3000/list');
  };
 
